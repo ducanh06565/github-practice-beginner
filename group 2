@@ -1,0 +1,86 @@
+#include <stdio.h>
+
+int main() {
+    int a;             // a : nhiet do moi truong
+    int b = 0;         // b : trang thai may
+    int c;             // c : do am moi truong
+    float d = 100;     // d : luong nuoc con lai (lit)
+    int nap;           // nap : hoi co nap them nuoc khong?
+
+    while (1) {
+        // Kiem tra nuoc trong binh
+        if (d < 5.0f) {
+            printf("Binh het nuoc.\n");
+            printf("Them nuoc vao binh (0 = khong, 1 = co): ");
+            scanf("%d", &nap);
+
+            if (nap == 0) {
+                printf("Het nuoc, may ngung hoat dong.\n");
+                break; // Thoat khoi vong lap
+            } else {
+                d = 100;
+                printf("Da nap day nuoc.\n");
+            }
+        }
+
+        // Nhap du lieu moi truong
+        printf("Nhiet do moi truong: ");
+        scanf("%d", &a);
+
+        printf("Do am moi truong: ");
+        scanf("%d", &c);
+
+        // Quyet dinh bat/tat may
+        if (a > 20 && c <= 40) {
+            if (b == 0) {
+                b = 1;
+                printf("Bat may.\n");
+            } else {
+                printf("May dang bat.\n");
+            }
+        } else {
+            if (b == 1) {
+                b = 0;
+                printf("Tat may.\n");
+            } else {
+                printf("May dang tat.\n");
+            }
+        }
+
+        // Muc do tuoi
+        int muc_do = 0;
+        if (b == 1) {
+            if (c < 10) muc_do = 1;
+            else if (c < 20) muc_do = 2;
+            else if (c < 30) muc_do = 3;
+            else if (c <= 40) muc_do = 4;
+        }
+
+        // Thuc hien tuoi
+        switch (muc_do) {
+            case 1:
+                printf("Tuoi 30 lit nuoc trong 2 gio.\n");
+                d -= 30;
+                break;
+            case 2:
+                printf("Tuoi 20 lit nuoc trong 1.5 gio.\n");
+                d -= 20;
+                break;
+            case 3:
+                printf("Tuoi 15 lit nuoc trong 1 gio.\n");
+                d -= 15;
+                break;
+            case 4:
+                printf("Tuoi 10 lit nuoc trong 0.5 gio.\n");
+                d -= 10;
+                break;
+            default:
+                printf("Khong can tuoi nuoc.\n");
+                break;
+        }
+
+        printf("Nuoc con lai trong binh: %.1f lit\n\n", d);
+    }
+
+    return 0;
+}
