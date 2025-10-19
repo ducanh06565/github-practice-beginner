@@ -2,6 +2,8 @@
 
 > **Repo luyện tập GitHub dành cho sinh viên HUST và Việt Nam**
 
+✨ Updated by Phạm Đức Anh
+
 🔥 Updated by team member  
 ## 📖 Giới thiệu
 
