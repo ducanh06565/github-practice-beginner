@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+    int a;          // a: độ ẩm môi trường
+    int b = 20000;  // b: lượng nước trong bình đang có
+    int c = 400;    // c: lưu lượng nước tưới
+    int d = 0;      // d: trạng thái máy
+
+    while (1) {
+        char nap;   // biến cho lượng nước nạp thêm 
+        int n;      // lượng nước muốn nạp thêm
+        printf("Nhập độ ẩm: ");
+        scanf("%d", &a);
+
+        if (a <= 40) {
+            if (d == 0) {
+                b -= 400 * 10;
+                printf("Môi trường khô\n");
+                printf("Bật máy\n");
+                printf("Chế độ tưới dạng tia\n");
+                for (int i = 10; i > 0; i--) {
+                    printf("Tưới %dml nước trong %d giây\n", c, i);
+                    fflush(stdout); // in ra ngay
+                    sleep(1);
+                }
+            }
+        } 
+        else if (a > 40 && a <= 70) {
+            b -= 400 * 5;
+            printf("Môi trường bình thường\n");
+            printf("Bật máy\n");
+             printf("Chế độ tưới dạng phun sương\n");
+            for (int i = 5; i > 0; i--) {
+                printf("Tưới %dml nước trong %d giây\n", c, i);
+                fflush(stdout);
+                sleep(1);
+            }
+        } 
+        else if (a > 70) {
+            printf("Môi trường ẩm\n");
+            printf("Tắt máy\n");
+            d = 0;
+        }
+
+        printf("Lượng nước còn lại: %dml\n", b);
+        
+if (b < 10000) {
+    printf("Đèn đỏ\n");
+    printf("Máy không đủ nước\n");
+    printf("Bạn muốn nạp thêm nước không (Y/N)? ");
+    scanf(" %c", &nap);  
+
+    if (nap == 'y' || nap == 'Y') {
+        printf("Nhập lượng nước muốn nạp thêm (ml): ");
+        scanf("%d", &n);
+        b += n;
+        printf("Lượng nước hiện tại: %dml\n", b);
+    } else {
+        printf("Không nạp thêm nước.\n");
+    }
+}
+if (b >= 10000) {
+    printf("Đèn xanh\n");
+    printf("Máy đã sẵn sàng hoạt động tiếp\n");
+} else if (b < 10000) {
+    printf("Đèn đỏ\n");
+    printf("Máy không đủ nước để hoạt động\n");
+    break;
+}
+        printf("---------------------------------------\n");
+    }
+    return 0;
+}
